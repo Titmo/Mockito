@@ -38,5 +38,4 @@ public class DepartmentController {
     public int sumSalary(@PathVariable int id) {
         return departmentService.sumSalary(id);
     }
-
 }

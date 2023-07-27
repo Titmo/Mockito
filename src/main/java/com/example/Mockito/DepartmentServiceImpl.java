@@ -45,13 +45,11 @@ public class DepartmentServiceImpl implements DepartmentService {
                 .filter(d -> (d.getDepartment() == departmentId))
                 .mapToInt(Employee::getSalary).sum();
     }
-
     @Override
     public ArrayList<Employee> listOfDepartment(int departmentId) {
         return (ArrayList<Employee>) employeeService.staff
                 .stream()
                 .filter(d -> (d.getDepartment() == departmentId))
                 .collect(Collectors.toList());
-
     }
 }

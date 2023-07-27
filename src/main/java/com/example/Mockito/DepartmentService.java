@@ -6,13 +6,8 @@ import java.util.Map;
 
 public interface DepartmentService {
     Map<Integer, List<Employee>> showAllDepartmot();
-
-
     Employee mixSalary(int departmentId);
-
     Employee maxSalary(int departmentId);
-
     int sumSalary(int departmentId);
-
     ArrayList<Employee> listOfDepartment(int departmentId);
 }

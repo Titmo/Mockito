@@ -33,7 +33,6 @@ public class EmployeeController {
     public Employee deletePerson(@RequestParam String firstName, @RequestParam String lastName) {
         return employeeService.deletePerson(firstName, lastName);
     }
-
     @GetMapping(path = "/getAll")
     public List<Employee> showAllPersons() {
         return employeeService.showAllPersons();
