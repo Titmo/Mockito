@@ -1,4 +1,4 @@
-package com.example.Mockito.Exception;
+package com.example.Mockito.exception;
 
 public class EmployeeStorageIsFullException extends RuntimeException{
     public EmployeeStorageIsFullException(String message) {

@@ -1,5 +1,7 @@
-package com.example.Mockito;
+package com.example.Mockito.controller;
 
+import com.example.Mockito.Employee;
+import com.example.Mockito.service.EmployeeService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;

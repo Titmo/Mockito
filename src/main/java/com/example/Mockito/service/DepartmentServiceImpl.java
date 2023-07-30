@@ -1,8 +1,8 @@
-package com.example.Mockito;
+package com.example.Mockito.service;
 
+import com.example.Mockito.Employee;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
@@ -14,7 +14,7 @@ import static java.util.stream.Collectors.groupingBy;
 public class DepartmentServiceImpl implements DepartmentService {
     private final EmployeeServiceImpl employeeService;
 
-    public DepartmentServiceImpl(EmployeeServiceImpl employeeService) {
+    private DepartmentServiceImpl(EmployeeServiceImpl employeeService) {
         this.employeeService = employeeService;
     }
 
@@ -46,8 +46,8 @@ public class DepartmentServiceImpl implements DepartmentService {
                 .mapToInt(Employee::getSalary).sum();
     }
     @Override
-    public ArrayList<Employee> listOfDepartment(int departmentId) {
-        return (ArrayList<Employee>) employeeService.staff
+    public List<Employee> listOfDepartment(int departmentId) {
+        return  employeeService.staff
                 .stream()
                 .filter(d -> (d.getDepartment() == departmentId))
                 .collect(Collectors.toList());

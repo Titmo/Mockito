@@ -1,4 +1,6 @@
-package com.example.Mockito;
+package com.example.Mockito.service;
+
+import com.example.Mockito.Employee;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,5 +11,5 @@ public interface DepartmentService {
     Employee mixSalary(int departmentId);
     Employee maxSalary(int departmentId);
     int sumSalary(int departmentId);
-    ArrayList<Employee> listOfDepartment(int departmentId);
+    List<Employee> listOfDepartment(int departmentId);
 }
