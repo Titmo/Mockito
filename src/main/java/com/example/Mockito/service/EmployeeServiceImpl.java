@@ -38,7 +38,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         for(Employee i : staff){
             if((i.getName().equals(name)) && (i.getLastName().equals(lastName))){
                 staff.remove(i);
-                return staff.get(staff.indexOf(i));
+                return i;
             }
         }
         throw new EmployeeNotFoundException("Такого сотрудника нет");

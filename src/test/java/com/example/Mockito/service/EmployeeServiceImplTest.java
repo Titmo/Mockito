@@ -28,8 +28,6 @@ class EmployeeServiceImplTest {
         staff.add(employee2);
         staff.add(employee3);
         staff.add(employee4);
-        EmployeeServiceImpl employeeService = Mockito.mock(EmployeeServiceImpl.class);
-        when(employeeService.showAllPersons()).thenReturn(staff);
         employeeService = new EmployeeServiceImpl();
     }
 
@@ -51,16 +49,16 @@ class EmployeeServiceImplTest {
 
     @Test
     void deletePerson() {
-        String name = "Ivan";
-        String lastName = "Ivanov";
+        String lastName = "Данила";
+        String name = "Чернов";
         Employee ex = null;
 
         Employee act = employeeService.deletePerson(name, lastName);
 
         for(Employee i : staff){
-            if((i.getName().equals("Ivan")) && (i.getLastName().equals("Ivanov"))){
+            if((i.getName().equals("Чернов")) && (i.getLastName().equals("Данила"))){
                 staff.remove(i);
-                ex = staff.get(staff.indexOf(i));;
+                ex = i;
             }
         }
         assertEquals(act, ex);
@@ -68,14 +66,14 @@ class EmployeeServiceImplTest {
 
     @Test
     void findPerson() {
-        String name = "Ivan";
-        String lastName = "Ivanov";
+        String lastName = "Данила";
+        String name = "Чернов";
 
 
         Employee act = employeeService.findPerson(name, lastName);
 
         Employee ex = staff.stream()
-                .filter(test -> ((test.getName().equals("Ivan")) && (test.getLastName().equals("Ivanov"))))
+                .filter(test -> ((test.getName().equals("Чернов")) && (test.getLastName().equals("Данила"))))
                 .findFirst()
                 .orElseThrow(() -> new EmployeeNotFoundException("Такого сотрудника нет"));
 
