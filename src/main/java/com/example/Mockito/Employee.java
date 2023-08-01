@@ -1,5 +1,7 @@
 package com.example.Mockito;
 
+import java.util.Objects;
+
 public class Employee {
     private String Name;
     private String lastName;
@@ -26,5 +28,18 @@ public class Employee {
     }
     public int getDepartment() {
         return department;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Employee employee = (Employee) o;
+        return salary == employee.salary && department == employee.department && Objects.equals(Name, employee.Name) && Objects.equals(lastName, employee.lastName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(Name, lastName, salary, department);
     }
 }

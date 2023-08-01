@@ -3,6 +3,7 @@ package com.example.Mockito.service;
 import com.example.Mockito.Employee;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -12,15 +13,13 @@ import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.groupingBy;
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.when;
 
 class DepartmentServiceImplTest {
     DepartmentServiceImpl departmentService;
 
     List<Employee> staff = new ArrayList<>(List.of());
 
-    private DepartmentServiceImplTest(DepartmentServiceImpl departmentService) {
-        this.departmentService = departmentService;
-    }
 
 @BeforeEach
     public void setUp() {
@@ -32,6 +31,9 @@ class DepartmentServiceImplTest {
     staff.add(employee2);
     staff.add(employee3);
     staff.add(employee4);
+    EmployeeService employeeService = Mockito.mock(EmployeeService.class);
+    when(employeeService.showAllPersons()).thenReturn(staff);
+    departmentService = new DepartmentServiceImpl(employeeService);
 }
     @Test
     void showAllDepartmot() {

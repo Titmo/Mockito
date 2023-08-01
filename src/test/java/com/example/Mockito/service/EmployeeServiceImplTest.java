@@ -1,22 +1,22 @@
 package com.example.Mockito.service;
 
 import com.example.Mockito.Employee;
+import com.example.Mockito.exception.EmployeeNotFoundException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.when;
 
 class EmployeeServiceImplTest {
     EmployeeServiceImpl employeeService;
 
     List<Employee> staff = new ArrayList<>(List.of());
 
-    public EmployeeServiceImplTest(EmployeeServiceImpl employeeService) {
-        this.employeeService = employeeService;
-    }
 
     @BeforeEach
     public void setUp() {
@@ -28,6 +28,9 @@ class EmployeeServiceImplTest {
         staff.add(employee2);
         staff.add(employee3);
         staff.add(employee4);
+        EmployeeServiceImpl employeeService = Mockito.mock(EmployeeServiceImpl.class);
+        when(employeeService.showAllPersons()).thenReturn(staff);
+        employeeService = new EmployeeServiceImpl();
     }
 
     @Test
@@ -37,24 +40,54 @@ class EmployeeServiceImplTest {
         int salary = 120000;
         int department = 1;
 
-        Employee act = employeeService.addPerson(name,lastName,salary,department);
+        Employee act = employeeService.addPerson(name, lastName, salary, department);
 
         Employee employee = new Employee("Ivan", "Ivanov", 120000, 1);
         staff.add(employee);
-        Employee ex= staff.get(staff.indexOf(employee));
+        Employee ex = staff.get(staff.indexOf(employee));
 
-        assertEquals(act,ex);
+        assertEquals(act, ex);
     }
 
     @Test
     void deletePerson() {
+        String name = "Ivan";
+        String lastName = "Ivanov";
+        Employee ex = null;
+
+        Employee act = employeeService.deletePerson(name, lastName);
+
+        for(Employee i : staff){
+            if((i.getName().equals("Ivan")) && (i.getLastName().equals("Ivanov"))){
+                staff.remove(i);
+                ex = staff.get(staff.indexOf(i));;
+            }
+        }
+        assertEquals(act, ex);
     }
 
     @Test
     void findPerson() {
+        String name = "Ivan";
+        String lastName = "Ivanov";
+
+
+        Employee act = employeeService.findPerson(name, lastName);
+
+        Employee ex = staff.stream()
+                .filter(test -> ((test.getName().equals("Ivan")) && (test.getLastName().equals("Ivanov"))))
+                .findFirst()
+                .orElseThrow(() -> new EmployeeNotFoundException("Такого сотрудника нет"));
+
+        assertEquals(act, ex);
     }
 
     @Test
     void showAllPersons() {
+        List<Employee> act = employeeService.showAllPersons();
+
+        List<Employee> ex = staff;
+
+        assertEquals(act,ex);
     }
 }
