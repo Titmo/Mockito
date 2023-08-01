@@ -55,13 +55,13 @@ class EmployeeServiceImplTest {
 
         Employee act = employeeService.deletePerson(name, lastName);
 
-        for(Employee i : staff){
-            if((i.getName().equals("Чернов")) && (i.getLastName().equals("Данила"))){
-                staff.remove(i);
-                ex = i;
-            }
-        }
-        assertEquals(act, ex);
+//        for(Employee i : staff){
+//            if((i.getName().equals("Чернов")) && (i.getLastName().equals("Данила"))){
+//                staff.remove(i);
+//                ex= i;
+//            }
+//        }
+        assertEquals(act, staff.get(0));
     }
 
     @Test
