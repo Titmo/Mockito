@@ -2,6 +2,7 @@ package com.example.Mockito.service;
 
 import com.example.Mockito.Employee;
 import com.example.Mockito.exception.EmployeeNotFoundException;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -62,6 +63,17 @@ class EmployeeServiceImplTest {
 //            }
 //        }
         assertEquals(act, staff.get(0));
+    }
+    @Test
+    void deletePersonTest() {
+        String lastName = "Данила";
+        String name = "Чернов";
+
+        employeeService.findPerson(name, lastName);
+
+        employeeService.deletePerson(name, lastName);
+
+        Assertions.assertThrows(EmployeeNotFoundException.class, () -> employeeService.findPerson(name, lastName));
     }
 
     @Test
