@@ -1,5 +1,7 @@
-package com.example.Mockito;
+package com.example.Mockito.controller;
 
+import com.example.Mockito.Employee;
+import com.example.Mockito.service.EmployeeService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -33,7 +35,6 @@ public class EmployeeController {
     public Employee deletePerson(@RequestParam String firstName, @RequestParam String lastName) {
         return employeeService.deletePerson(firstName, lastName);
     }
-
     @GetMapping(path = "/getAll")
     public List<Employee> showAllPersons() {
         return employeeService.showAllPersons();

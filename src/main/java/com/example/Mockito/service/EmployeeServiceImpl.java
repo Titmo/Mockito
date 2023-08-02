@@ -1,13 +1,13 @@
-package com.example.Mockito;
+package com.example.Mockito.service;
 
-import com.example.Mockito.Exception.EmployeeAlreadyAddedException;
-import com.example.Mockito.Exception.EmployeeNotFoundException;
-import com.example.Mockito.Exception.EmployeeStorageIsFullException;
+import com.example.Mockito.Employee;
+import com.example.Mockito.exception.EmployeeAlreadyAddedException;
+import com.example.Mockito.exception.EmployeeNotFoundException;
+import com.example.Mockito.exception.EmployeeStorageIsFullException;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
@@ -34,11 +34,10 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public Employee deletePerson(String name, String lastName) {
-        List<Employee> employees = new ArrayList<>();
         for(Employee i : staff){
             if((i.getName().equals(name)) && (i.getLastName().equals(lastName))){
-                employees.remove(i);
-                return (Employee) employees;
+                staff.remove(i);
+                return i;
             }
         }
         throw new EmployeeNotFoundException("Такого сотрудника нет");
@@ -46,25 +45,12 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public Employee findPerson(String name, String lastName) {
-        List<Employee> employees = new ArrayList<>();
-        for(Employee i : staff){
-            if((i.getName().equals(name)) && (i.getLastName().equals(lastName))){
-                employees.add(i);
-                return (Employee) employees;
-            }
-        }
-        throw new EmployeeNotFoundException("Такого сотрудника нет");
+        return staff
+                .stream()
+                .filter(test -> ((test.getName().equals(name)) && (test.getLastName().equals(lastName))))
+                .findFirst()
+                .orElseThrow(() -> new EmployeeNotFoundException("Такого сотрудника нет"));
     }
-//        Employee finded = staff
-//                .stream()
-//                .filter(test -> ((test.getName().equals(name)) && (test.getLastName().equals(lastName))))
-//                .findFirst()
-//                .orElse(null);
-//        if (finded.equals(null)) {
-//            throw new EmployeeNotFoundException("Такого сотрудника нет");
-//        } else {
-//            return finded;
-//        }
 
 
     @Override
@@ -72,4 +58,3 @@ public class EmployeeServiceImpl implements EmployeeService {
         return staff;
     }
 }
-

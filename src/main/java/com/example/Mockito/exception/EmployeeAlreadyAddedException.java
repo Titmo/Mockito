@@ -1,7 +1,8 @@
-package com.example.Mockito.Exception;
+package com.example.Mockito.exception;
 
 public class EmployeeAlreadyAddedException extends RuntimeException {
     public EmployeeAlreadyAddedException(String message) {
         super(message);
     }
 }
+

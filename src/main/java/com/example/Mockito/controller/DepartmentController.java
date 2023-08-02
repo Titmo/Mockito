@@ -1,11 +1,12 @@
-package com.example.Mockito;
+package com.example.Mockito.controller;
 
+import com.example.Mockito.service.DepartmentService;
+import com.example.Mockito.Employee;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -23,7 +24,7 @@ public class DepartmentController {
         return departmentService.showAllDepartmot();
     }
     @GetMapping("/{id}/employees")
-    public ArrayList<Employee> getDepartmentId(@PathVariable int id) {
+    public List<Employee> getDepartmentId(@PathVariable int id) {
         return departmentService.listOfDepartment(id);
     }
     @GetMapping("/{id}/salary/max")
@@ -38,5 +39,4 @@ public class DepartmentController {
     public int sumSalary(@PathVariable int id) {
         return departmentService.sumSalary(id);
     }
-
 }
