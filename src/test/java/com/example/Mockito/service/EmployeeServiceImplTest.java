@@ -5,13 +5,13 @@ import com.example.Mockito.exception.EmployeeNotFoundException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
+
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.when;
+
 
 class EmployeeServiceImplTest {
     EmployeeServiceImpl employeeService;
@@ -50,22 +50,6 @@ class EmployeeServiceImplTest {
 
     @Test
     void deletePerson() {
-        String lastName = "Данила";
-        String name = "Чернов";
-        Employee ex = null;
-
-        Employee act = employeeService.deletePerson(name, lastName);
-
-//        for(Employee i : staff){
-//            if((i.getName().equals("Чернов")) && (i.getLastName().equals("Данила"))){
-//                staff.remove(i);
-//                ex= i;
-//            }
-//        }
-        assertEquals(act, staff.get(0));
-    }
-    @Test
-    void deletePersonTest() {
         String lastName = "Данила";
         String name = "Чернов";
 
